@@ -29,7 +29,8 @@ exports.register = async (req, res) => {
       address,
       age,
       accountType = 'SAVINGS',
-      initialDeposit = 0
+      initialDeposit = 0,
+      accountNumber: providedAccountNumber
     } = req.body;
 
     // Basic validation
@@ -68,10 +69,27 @@ exports.register = async (req, res) => {
       });
     }
 
+    // Use provided account number or generate one
+    let accountNumber = providedAccountNumber;
+
+    // Validate account number if provided
+    if (accountNumber) {
+      if (!/^\d{6}$/.test(accountNumber)) {
+        return res.status(400).json({ error: "Account number must be 6 digits" });
+      }
+      // Check if account number already exists
+      const existingAccount = await User.findOne({ accountNumber });
+      if (existingAccount) {
+        return res.status(400).json({ error: "Account number already exists" });
+      }
+    } else {
+      // Generate if not provided (backward compatibility)
+      accountNumber = generateAccNo();
+    }
+
     // Hash the PIN
     const salt = await bcrypt.genSalt(10);
     const pinHash = await bcrypt.hash(pin, salt);
-    const accountNumber = generateAccNo();
 
     // Create user
     const user = new User({

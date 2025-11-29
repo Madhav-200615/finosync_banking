@@ -22,7 +22,7 @@ const transferRoutes = require("./src/routes/transfer");
 const statementsRoutes = require("./src/routes/statements");
 const fdRoutes = require("./src/routes/fd");
 const loanRoutes = require("./src/routes/loan");          // ⭐ NEW LOAN ROUTES
-//const cardRoutes = require("./src/routes/cards");         // ⭐ (future)
+const cardRoutes = require("./src/routes/cards");         // ⭐ CARDS ROUTES
 //const investRoutes = require("./src/routes/investments"); // ⭐ (future)
 
 // Middleware
@@ -53,7 +53,7 @@ app.use("/api/transfer", transferRoutes);
 app.use("/api/statements", statementsRoutes);
 app.use("/api/fd", fdRoutes);
 app.use("/api/loans", loanRoutes);              // ⭐ NEW
-//app.use("/api/cards", cardRoutes);              // ⭐ placeholder
+app.use("/api/cards", cardRoutes);              // ⭐ CARDS API
 //app.use("/api/investments", investRoutes);      // ⭐ placeholder
 
 // Prometheus metrics

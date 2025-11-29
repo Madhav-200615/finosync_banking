@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import api from '../api';
 import './login.css';
@@ -19,6 +19,46 @@ export default function Register() {
   });
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
+  const [generatedAccountNumber, setGeneratedAccountNumber] = useState('');
+  const [showAccountNumber, setShowAccountNumber] = useState(false);
+  const [copied, setCopied] = useState(false);
+
+  // Generate account number (same logic as backend)
+  const generateAccountNumber = () => {
+    return Math.floor(100000 + Math.random() * 900000).toString();
+  };
+
+  // Copy account number to clipboard
+  const handleCopyAccountNumber = async () => {
+    try {
+      await navigator.clipboard.writeText(generatedAccountNumber);
+      setCopied(true);
+      setTimeout(() => setCopied(false), 2000); // Reset after 2 seconds
+    } catch (err) {
+      console.error('Failed to copy:', err);
+    }
+  };
+
+  // Watch for matching PINs and generate account number
+  useEffect(() => {
+    if (
+      formData.pin &&
+      formData.confirmPin &&
+      formData.pin === formData.confirmPin &&
+      formData.pin.length === 4 &&
+      /^\d{4}$/.test(formData.pin) &&
+      !generatedAccountNumber
+    ) {
+      const accNo = generateAccountNumber();
+      setGeneratedAccountNumber(accNo);
+      // Delay animation slightly for smooth effect
+      setTimeout(() => setShowAccountNumber(true), 100);
+    } else if (formData.pin !== formData.confirmPin && generatedAccountNumber) {
+      // Reset if PINs no longer match
+      setGeneratedAccountNumber('');
+      setShowAccountNumber(false);
+    }
+  }, [formData.pin, formData.confirmPin, generatedAccountNumber]);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -71,7 +111,8 @@ export default function Register() {
         pan: formData.pan,
         address: formData.address,
         accountType: formData.accountType,
-        initialDeposit: parseFloat(formData.initialDeposit) || 0
+        initialDeposit: parseFloat(formData.initialDeposit) || 0,
+        accountNumber: generatedAccountNumber // Send the generated account number
       });
 
       console.log('Registration successful:', response.data);
@@ -156,7 +197,7 @@ export default function Register() {
                 onChange={handleChange}
                 required
                 placeholder="Enter your 10-digit mobile number"
-                pattern="[0-9]{10}"
+                maxLength="10"
               />
             </div>
 
@@ -168,7 +209,7 @@ export default function Register() {
                 value={formData.aadhar}
                 onChange={handleChange}
                 placeholder="Enter 12-digit Aadhar number"
-                pattern="[0-9]{12}"
+                maxLength="12"
               />
             </div>
 
@@ -179,8 +220,8 @@ export default function Register() {
                 name="pan"
                 value={formData.pan}
                 onChange={handleChange}
-                placeholder="Enter 10-digit PAN number"
-                pattern="[A-Z]{5}[0-9]{4}[A-Z]{1}"
+                placeholder="Enter 10-character PAN (e.g., ABCDE1234F)"
+                maxLength="10"
                 style={{ textTransform: 'uppercase' }}
               />
             </div>
@@ -249,12 +290,63 @@ export default function Register() {
               />
             </div>
 
+            {/* Account Number Reveal - appears when PINs match */}
+            {showAccountNumber && (
+              <div className="account-number-reveal">
+                <div className="account-number-header">
+                  <span className="checkmark-icon">✓</span>
+                  <label>Your Account Number</label>
+                </div>
+                <div className="account-number-display">
+                  <div className="account-number-input-wrapper">
+                    <input
+                      type="text"
+                      value={generatedAccountNumber}
+                      readOnly
+                      className="account-number-field"
+                    />
+                    <button
+                      type="button"
+                      onClick={handleCopyAccountNumber}
+                      className="copy-account-btn"
+                      title="Copy account number"
+                    >
+                      {copied ? (
+                        <>
+                          <span className="copy-icon">✓</span>
+                          <span className="copy-text">Copied!</span>
+                        </>
+                      ) : (
+                        <>
+                          <span className="copy-icon">📋</span>
+                          <span className="copy-text">Copy</span>
+                        </>
+                      )}
+                    </button>
+                  </div>
+                  <p className="account-number-hint">
+                    📝 Please save this number - you'll need it to login
+                  </p>
+                </div>
+              </div>
+            )}
+
             <button
               type="submit"
-              className="login-button"
+              className="create-account-button"
               disabled={loading}
             >
-              {loading ? 'Creating Account...' : 'Create Account'}
+              {loading ? (
+                <>
+                  <span className="button-spinner"></span>
+                  Creating Account...
+                </>
+              ) : (
+                <>
+                  <span className="button-icon">✨</span>
+                  Create Account
+                </>
+              )}
             </button>
 
             <div className="login-footer">
