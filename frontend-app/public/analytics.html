@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Analytics | FastBank</title>
+    <link rel="stylesheet" href="styles/analytics.css">
+
+    <!-- Chart.js CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+
+<div class="container">
+    <aside class="sidebar">
+        <h2>FastBank</h2>
+        <a href="dashboard.html">🏠 Overview</a>
+        <a href="accounts.html">🏦 Accounts</a>
+        <a href="transactions.html">🔄 Transactions</a>
+        <a href="statements.html">📄 Statements</a>
+        <a href="cards.html">💳 Cards</a>
+        <a href="loans.html">💼 Loans</a>
+        <a href="fixed.html">🪙 Fixed Deposits</a>
+        <a href="invest.html">📈 Investments</a>
+        <a class="active" href="analytics.html">📊 Analytics</a>
+        <a href="search.html">🔍 Search</a>
+        <button id="logout">Logout</button>
+    </aside>
+
+    <main class="content">
+        <h1>Analytics</h1>
+        <p>Graphical representation of credit vs debit and spending categories.</p>
+
+        <div class="cards">
+
+            <!-- Credit vs Debit Chart -->
+            <div class="card">
+                <h2>Credit vs Debit</h2>
+                <canvas id="creditDebitChart" width="350" height="250"></canvas>
+            </div>
+
+            <!-- Category Chart -->
+            <div class="card">
+                <h2>By Category</h2>
+                <canvas id="categoryChart" width="350" height="250"></canvas>
+            </div>
+
+            <!-- Monthly Flow Chart -->
+            <div class="card">
+                <h2>Monthly Flow</h2>
+                <canvas id="monthlyFlowChart" width="350" height="250"></canvas>
+            </div>
+
+        </div>
+    </main>
+</div>
+
+<script src="scripts/analytics.js"></script>
+</body>
+</html>
