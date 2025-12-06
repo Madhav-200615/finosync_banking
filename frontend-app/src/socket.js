@@ -4,7 +4,7 @@ const socket = new WebSocket("ws://localhost:8000/ws");
 
 // Optional: console logs for debugging
 socket.onopen = () => {
-  console.log("WS Connected to FastBank");
+  console.log("WS Connected to FinoSync");
 };
 
 socket.onclose = () => {

@@ -1,5 +1,5 @@
 {
-  "name": "fastbank-backend",
+  "name": "finosync-backend",
   "version": "1.0.0",
   "description": "Banking backend demo with Redis, JWT, RabbitMQ, Elasticsearch, Prometheus etc.",
   "main": "server.js",

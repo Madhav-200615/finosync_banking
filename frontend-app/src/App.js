@@ -27,6 +27,9 @@ import BillPayment from "./pages/BillPayment";
 import OTPVerification from "./pages/OTPVerification";
 import PaymentResult from "./pages/PaymentResult";
 
+// Theme Provider
+import { ThemeProvider } from "./contexts/ThemeContext";
+
 function PrivateRoute({ children }) {
   const token = localStorage.getItem("token");
   const location = useLocation();
@@ -40,171 +43,173 @@ function PrivateRoute({ children }) {
 
 export default function App() {
   return (
-    <Routes>
-      <Route path="/login" element={<Login />} />
-      <Route path="/register" element={<Register />} />
+    <ThemeProvider>
+      <Routes>
+        <Route path="/login" element={<Login />} />
+        <Route path="/register" element={<Register />} />
 
-      {/* Public Landing Page */}
-      <Route path="/" element={<LandingPage />} />
+        {/* Public Landing Page */}
+        <Route path="/" element={<LandingPage />} />
 
-      <Route
-        path="/dashboard"
-        element={
-          <PrivateRoute>
-            <Dashboard />
-          </PrivateRoute>
-        }
-      />
+        <Route
+          path="/dashboard"
+          element={
+            <PrivateRoute>
+              <Dashboard />
+            </PrivateRoute>
+          }
+        />
 
-      <Route
-        path="/accounts"
-        element={
-          <PrivateRoute>
-            <Accounts />
-          </PrivateRoute>
-        }
-      />
+        <Route
+          path="/accounts"
+          element={
+            <PrivateRoute>
+              <Accounts />
+            </PrivateRoute>
+          }
+        />
 
-      <Route
-        path="/transactions"
-        element={
-          <PrivateRoute>
-            <Transactions />
-          </PrivateRoute>
-        }
-      />
+        <Route
+          path="/transactions"
+          element={
+            <PrivateRoute>
+              <Transactions />
+            </PrivateRoute>
+          }
+        />
 
-      <Route
-        path="/statements"
-        element={
-          <PrivateRoute>
-            <Statements />
-          </PrivateRoute>
-        }
-      />
+        <Route
+          path="/statements"
+          element={
+            <PrivateRoute>
+              <Statements />
+            </PrivateRoute>
+          }
+        />
 
-      <Route
-        path="/cards"
-        element={
-          <PrivateRoute>
-            <Cards />
-          </PrivateRoute>
-        }
-      />
+        <Route
+          path="/cards"
+          element={
+            <PrivateRoute>
+              <Cards />
+            </PrivateRoute>
+          }
+        />
 
-      <Route
-        path="/loans"
-        element={
-          <PrivateRoute>
-            <Loans />
-          </PrivateRoute>
-        }
-      />
-      <Route path="/loan/apply" element={<LoanApply />} />
+        <Route
+          path="/loans"
+          element={
+            <PrivateRoute>
+              <Loans />
+            </PrivateRoute>
+          }
+        />
+        <Route path="/loan/apply" element={<LoanApply />} />
 
 
-      <Route
-        path="/fd"
-        element={
-          <PrivateRoute>
-            <FD />
-          </PrivateRoute>
-        }
-      />
+        <Route
+          path="/fd"
+          element={
+            <PrivateRoute>
+              <FD />
+            </PrivateRoute>
+          }
+        />
 
-      <Route
-        path="/investments"
-        element={
-          <PrivateRoute>
-            <Investments />
-          </PrivateRoute>
-        }
-      />
+        <Route
+          path="/investments"
+          element={
+            <PrivateRoute>
+              <Investments />
+            </PrivateRoute>
+          }
+        />
 
-      <Route
-        path="/analytics"
-        element={
-          <PrivateRoute>
-            <Analytics />
-          </PrivateRoute>
-        }
-      />
+        <Route
+          path="/analytics"
+          element={
+            <PrivateRoute>
+              <Analytics />
+            </PrivateRoute>
+          }
+        />
 
-      <Route
-        path="/search"
-        element={
-          <PrivateRoute>
-            <Search />
-          </PrivateRoute>
-        }
-      />
+        <Route
+          path="/search"
+          element={
+            <PrivateRoute>
+              <Search />
+            </PrivateRoute>
+          }
+        />
 
-      {/* Payment Module Routes */}
-      <Route
-        path="/payments"
-        element={
-          <PrivateRoute>
-            <PaymentHub />
-          </PrivateRoute>
-        }
-      />
+        {/* Payment Module Routes */}
+        <Route
+          path="/payments"
+          element={
+            <PrivateRoute>
+              <PaymentHub />
+            </PrivateRoute>
+          }
+        />
 
-      <Route
-        path="/payments/self"
-        element={
-          <PrivateRoute>
-            <SelfTransfer />
-          </PrivateRoute>
-        }
-      />
+        <Route
+          path="/payments/self"
+          element={
+            <PrivateRoute>
+              <SelfTransfer />
+            </PrivateRoute>
+          }
+        />
 
-      <Route
-        path="/payments/transfer"
-        element={
-          <PrivateRoute>
-            <TransferToOthers />
-          </PrivateRoute>
-        }
-      />
+        <Route
+          path="/payments/transfer"
+          element={
+            <PrivateRoute>
+              <TransferToOthers />
+            </PrivateRoute>
+          }
+        />
 
-      <Route
-        path="/payments/bills"
-        element={
-          <PrivateRoute>
-            <PayBills />
-          </PrivateRoute>
-        }
-      />
+        <Route
+          path="/payments/bills"
+          element={
+            <PrivateRoute>
+              <PayBills />
+            </PrivateRoute>
+          }
+        />
 
-      <Route
-        path="/payments/bill-pay"
-        element={
-          <PrivateRoute>
-            <BillPayment />
-          </PrivateRoute>
-        }
-      />
+        <Route
+          path="/payments/bill-pay"
+          element={
+            <PrivateRoute>
+              <BillPayment />
+            </PrivateRoute>
+          }
+        />
 
-      <Route
-        path="/payments/otp"
-        element={
-          <PrivateRoute>
-            <OTPVerification />
-          </PrivateRoute>
-        }
-      />
+        <Route
+          path="/payments/otp"
+          element={
+            <PrivateRoute>
+              <OTPVerification />
+            </PrivateRoute>
+          }
+        />
 
-      <Route
-        path="/payments/result"
-        element={
-          <PrivateRoute>
-            <PaymentResult />
-          </PrivateRoute>
-        }
-      />
+        <Route
+          path="/payments/result"
+          element={
+            <PrivateRoute>
+              <PaymentResult />
+            </PrivateRoute>
+          }
+        />
 
-      {/* Redirect old transfer route to new payment hub */}
-      <Route path="/transfer" element={<Navigate to="/payments" replace />} />
-    </Routes>
+        {/* Redirect old transfer route to new payment hub */}
+        <Route path="/transfer" element={<Navigate to="/payments" replace />} />
+      </Routes>
+    </ThemeProvider>
   );
 }

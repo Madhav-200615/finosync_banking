@@ -201,24 +201,27 @@ exports.getDashboardData = async (req, res) => {
       .filter(t => t.type === "DEBIT")
       .reduce((a, b) => a + b.amount, 0);
 
-    // Generate monthly data for charts (last 6 months)
+    // Generate daily data for charts (last 7 days)
     const monthlyData = [];
-    for (let i = 5; i >= 0; i--) {
+    for (let i = 6; i >= 0; i--) {
       const date = new Date();
-      date.setMonth(date.getMonth() - i);
-      const monthStart = new Date(date.getFullYear(), date.getMonth(), 1);
-      const monthEnd = new Date(date.getFullYear(), date.getMonth() + 1, 0);
+      date.setDate(date.getDate() - i);
+      date.setHours(0, 0, 0, 0);
 
-      const monthTx = allTx.filter(t => {
+      const dayStart = new Date(date);
+      const dayEnd = new Date(date);
+      dayEnd.setHours(23, 59, 59, 999);
+
+      const dayTx = allTx.filter(t => {
         const txDate = new Date(t.createdAt);
-        return txDate >= monthStart && txDate <= monthEnd;
+        return txDate >= dayStart && txDate <= dayEnd;
       });
 
-      const credit = monthTx.filter(t => t.type === "CREDIT").reduce((a, b) => a + b.amount, 0);
-      const debit = monthTx.filter(t => t.type === "DEBIT").reduce((a, b) => a + b.amount, 0);
+      const credit = dayTx.filter(t => t.type === "CREDIT").reduce((a, b) => a + b.amount, 0);
+      const debit = dayTx.filter(t => t.type === "DEBIT").reduce((a, b) => a + b.amount, 0);
 
       monthlyData.push({
-        label: date.toLocaleString('default', { month: 'short' }),
+        label: date.toLocaleString('default', { weekday: 'short' }), // e.g., "Mon"
         credit,
         debit
       });
@@ -236,14 +239,27 @@ exports.getDashboardData = async (req, res) => {
       amount
     })).sort((a, b) => b.amount - a.amount);
 
+    // Calculate weekly totals (last 7 days) from the daily data
+    const weeklyCredits = monthlyData.reduce((sum, day) => sum + day.credit, 0);
+    const weeklyDebits = monthlyData.reduce((sum, day) => sum + day.debit, 0);
+    const weeklyNet = weeklyCredits - weeklyDebits;
+
+    // Calculate percentages for Traffic chart (based on weekly activity)
+    const totalActivity = weeklyCredits + weeklyDebits;
+    const creditPercentage = totalActivity > 0 ? Math.round((weeklyCredits / totalActivity) * 100) : 0;
+    const debitPercentage = totalActivity > 0 ? Math.round((weeklyDebits / totalActivity) * 100) : 0;
+
     return res.json({
       success: true,
       dashboard: {
         accounts,
         totalBalance,
         recentTransactions: recentTx,
-        totalCredits,
-        totalDebits,
+        totalCredits: weeklyCredits, // Sending weekly totals as requested
+        totalDebits: weeklyDebits,   // Sending weekly totals as requested
+        netCashflow: weeklyNet,
+        creditPercentage,
+        debitPercentage,
         monthly: monthlyData,
         byCategory: categoryData
       }

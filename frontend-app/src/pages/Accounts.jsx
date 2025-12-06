@@ -118,16 +118,21 @@ export default function Accounts() {
               </tr>
             </thead>
             <tbody>
-              {recentTx?.map((t) => (
-                <tr key={t._id || t.id}>
-                  <td>{new Date(t.createdAt || t.date).toLocaleDateString("en-IN")}</td>
-                  <td>{t.description || t.note}</td>
-                  <td>{t.type}</td>
-                  <td className={t.type === "CREDIT" ? "amount-positive" : "amount-negative"}>
-                    {t.type === "DEBIT" ? "-" : "+"}₹{t.amount}
-                  </td>
-                </tr>
-              ))}
+              {recentTx
+                ?.filter(t => {
+                  const text = (t.description || t.note || "").toLowerCase();
+                  return text.includes("top up") || text.includes("initial") || text.includes("deposit") || text.includes("fd");
+                })
+                .map((t) => (
+                  <tr key={t._id || t.id}>
+                    <td>{new Date(t.createdAt || t.date).toLocaleDateString("en-IN")}</td>
+                    <td>{t.description || t.note}</td>
+                    <td>{t.type}</td>
+                    <td className={t.type?.trim().toUpperCase() === "CREDIT" ? "amount-positive" : "amount-negative"}>
+                      {t.type?.trim().toUpperCase() === "DEBIT" ? "-" : "+"}₹{t.amount}
+                    </td>
+                  </tr>
+                ))}
             </tbody>
           </table>
         </article>

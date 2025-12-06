@@ -17,7 +17,7 @@ export default function Sidebar() {
       <div className="sidebar-header">
         <div className="logo-circle">FB</div>
         <div className="logo-text">
-          <span className="logo-title">FastBank</span>
+          <span className="logo-title">FinoSync</span>
           <span className="logo-sub">Real-time Banking</span>
         </div>
       </div>

@@ -1,6 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import "./landing.css";
+import ThemeToggle from "../components/ThemeToggle";
 
 export default function LandingPage() {
     return (
@@ -8,7 +9,8 @@ export default function LandingPage() {
             {/* Navbar */}
             <nav className="landing-nav">
                 <div className="nav-logo">FinoSync Bank</div>
-                <div className="landing-nav-links">
+                <div className="landing-nav-links" style={{ display: 'flex', alignItems: 'center', gap: '20px' }}>
+                    <ThemeToggle />
                     <Link to="/login" className="nav-btn login">
                         Login
                     </Link>

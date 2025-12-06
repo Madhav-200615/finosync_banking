@@ -81,7 +81,7 @@ app.use((err, req, res, next) => {
 // ---------------- START SERVER + SERVICES ----------------
 async function start() {
   try {
-    logger.info("Starting FastBank backend...");
+    logger.info("Starting FinoSync backend...");
 
     await connectMongo();
     logger.info("MongoDB connected");

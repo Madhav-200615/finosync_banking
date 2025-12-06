@@ -1,7 +1,8 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import api from '../api';
 import './login.css';
+import ThemeToggle from '../components/ThemeToggle';
 
 export default function Register() {
   const navigate = useNavigate();
@@ -142,11 +143,16 @@ export default function Register() {
 
   return (
     <div className="login-root">
+      {/* Theme Toggle - Top Right */}
+      <div style={{ position: 'fixed', top: '20px', right: '20px', zIndex: 1000 }}>
+        <ThemeToggle />
+      </div>
+
       <div className="login-side">
-        <div className="logo-badge">FastBank</div>
-        <h1 className="login-heading">Create New Account</h1>
+        <div className="logo-badge">FinoSync</div>
+        <h1 className="login-heading">Create an Account</h1>
         <p className="login-tagline">
-          Join FastBank today and experience seamless banking.
+          Join FinoSync today and experience seamless banking.
           <br />
           Open your account in minutes.
         </p>

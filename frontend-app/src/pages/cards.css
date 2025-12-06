@@ -241,7 +241,7 @@
 }
 
 .card-cvv-section {
-    background: white;
+    background: var(--bg-card);
     color: #333;
     padding: 12px;
     border-radius: 8px;
@@ -272,7 +272,7 @@
 
 /* Card Info Section */
 .card-info-section {
-    background: white;
+    background: var(--bg-card);
     border-radius: 16px;
     padding: 24px;
     margin-top: 20px;
@@ -435,7 +435,7 @@
 }
 
 .card-action-btn.secondary {
-    background: white;
+    background: var(--bg-card);
     color: #667eea;
     border: 2px solid #667eea;
 }
@@ -445,7 +445,7 @@
 }
 
 .card-action-btn.danger {
-    background: white;
+    background: var(--bg-card);
     color: #dc3545;
     border: 2px solid #dc3545;
 }
@@ -455,7 +455,7 @@
 }
 
 .card-action-btn.success {
-    background: white;
+    background: var(--bg-card);
     color: #28a745;
     border: 2px solid #28a745;
 }
@@ -491,7 +491,7 @@
 }
 
 .modal-content {
-    background: white;
+    background: var(--bg-card);
     border-radius: 20px;
     padding: 32px;
     max-width: 500px;
@@ -573,7 +573,7 @@
     border-radius: 10px;
     font-size: 14px;
     transition: all 0.3s ease;
-    background: white;
+    background: var(--input-bg);
 }
 
 .form-input:focus,
@@ -627,7 +627,7 @@
 .empty-state {
     text-align: center;
     padding: 60px 20px;
-    background: white;
+    background: var(--bg-card);
     border-radius: 16px;
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
 }

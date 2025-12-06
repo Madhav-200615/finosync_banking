@@ -1,5 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import Topbar from "./Topbar";
 
 export default function Layout({ title, children }) {
   return (
@@ -7,7 +8,7 @@ export default function Layout({ title, children }) {
 
       {/* SIDEBAR */}
       <aside className="sidebar">
-        <h2>FastBank</h2>
+        <h2>FinoSync</h2>
 
         <nav className="nav-links">
           <Link to="/dashboard">📊 Overview</Link>
@@ -36,7 +37,7 @@ export default function Layout({ title, children }) {
 
       {/* MAIN CONTENT */}
       <main className="main">
-        <h1 className="page-title">{title}</h1>
+        <Topbar title={title} />
         {children}
       </main>
 

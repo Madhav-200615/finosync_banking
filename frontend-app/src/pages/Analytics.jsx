@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import Layout from "../components/Layout";
 import api from "../api";
 import { connectWS } from "../ws";
+import { useTheme } from "../contexts/ThemeContext";
 
 import {
   ResponsiveContainer,
@@ -32,6 +33,7 @@ export default function Analytics() {
   const [cardBills, setCardBills] = useState([]);
 
   const [loading, setLoading] = useState(true);
+  const { theme } = useTheme();
 
   const loadAnalytics = async () => {
     try {
@@ -97,6 +99,9 @@ export default function Analytics() {
     "#FACC15",
   ];
 
+  const textColor = theme === 'dark' ? '#e4e6eb' : '#1f1f1f';
+  const gridColor = theme === 'dark' ? 'rgba(255,255,255,0.1)' : 'rgba(0,0,0,0.1)';
+
   return (
     <Layout title="Analytics">
       <div className="analytics-root">
@@ -159,11 +164,11 @@ export default function Analytics() {
             ) : (
               <ResponsiveContainer width="100%" height={300}>
                 <BarChart data={trend}>
-                  <CartesianGrid stroke="rgba(0,0,0,0.1)" />
-                  <XAxis dataKey="day" />
-                  <YAxis />
-                  <Tooltip />
-                  <Legend />
+                  <CartesianGrid stroke={gridColor} />
+                  <XAxis dataKey="day" tick={{ fill: textColor }} />
+                  <YAxis tick={{ fill: textColor }} />
+                  <Tooltip contentStyle={{ backgroundColor: theme === 'dark' ? '#1a1f2e' : '#fff', borderColor: gridColor, color: textColor }} />
+                  <Legend wrapperStyle={{ color: textColor }} />
                   <Bar dataKey="credit" fill="#22C55E" />
                   <Bar dataKey="debit" fill="#EF4444" />
                 </BarChart>
@@ -230,27 +235,37 @@ export default function Analytics() {
               </thead>
 
               <tbody>
-                {recent.map((tx) => (
-                  <tr key={tx.id}>
-                    <td>
-                      {new Date(tx.date).toLocaleString("en-IN", {
-                        day: "2-digit",
-                        month: "short",
-                        year: "numeric",
-                        hour: "2-digit",
-                        minute: "2-digit",
-                      })}
-                    </td>
-                    <td>{tx.description}</td>
-                    <td>{tx.category}</td>
-                    <td>
-                      <span className={tx.type === "CREDIT" ? "pill credit" : "pill debit"}>
-                        {tx.type}
-                      </span>
-                    </td>
-                    <td>{formatCurrency(tx.amount)}</td>
-                  </tr>
-                ))}
+                {recent
+                  .filter((tx) => {
+                    const desc = (tx.description || "").toLowerCase();
+                    return (
+                      !desc.includes("fd") &&
+                      !desc.includes("wallet top up") &&
+                      !desc.includes("initial deposit")
+                    );
+                  })
+                  .slice(0, 8)
+                  .map((tx) => (
+                    <tr key={tx.id}>
+                      <td>
+                        {new Date(tx.date).toLocaleString("en-IN", {
+                          day: "2-digit",
+                          month: "short",
+                          year: "numeric",
+                          hour: "2-digit",
+                          minute: "2-digit",
+                        })}
+                      </td>
+                      <td>{tx.description}</td>
+                      <td>{tx.category}</td>
+                      <td>
+                        <span className={tx.type === "CREDIT" ? "pill credit" : "pill debit"}>
+                          {tx.type}
+                        </span>
+                      </td>
+                      <td>{formatCurrency(tx.amount)}</td>
+                    </tr>
+                  ))}
               </tbody>
             </table>
           )}

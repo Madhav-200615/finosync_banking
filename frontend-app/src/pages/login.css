@@ -9,7 +9,8 @@
   gap: 32px;
   background: radial-gradient(circle at top left, #4f8cff1a, transparent 55%),
     radial-gradient(circle at bottom right, #ff4b4b1a, transparent 55%),
-    #eef3ff;
+    var(--bg-primary);
+  color: var(--text-primary);
   font-family: system-ui, -apple-system, BlinkMacSystemFont, "SF Pro Text",
     "Inter", sans-serif;
 }
@@ -115,7 +116,7 @@
   width: 100%;
   max-width: 520px;
   border-radius: 24px;
-  background: #ffffff;
+  background: var(--bg-card);
   box-shadow: 0 20px 60px rgba(20, 31, 75, 0.25);
   padding: 28px 28px 24px;
   transform-style: preserve-3d;
@@ -167,13 +168,13 @@
   outline: none;
   transition: border 0.15s ease, box-shadow 0.15s ease,
     background-color 0.15s ease;
-  background: #f9fafb;
+  background: var(--input-bg);
 }
 
 .field input:focus {
   border-color: #2563eb;
   box-shadow: 0 0 0 1px rgba(37, 99, 235, 0.4);
-  background: #ffffff;
+  background: var(--bg-card);
 }
 
 /* PIN & keypad */
@@ -584,7 +585,7 @@
   max-width: 500px;
   margin: 0 auto;
   padding: 2rem;
-  background: white;
+  background: var(--bg-card);
   border-radius: 8px;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
@@ -709,7 +710,7 @@
   font-weight: 700 !important;
   text-align: center;
   letter-spacing: 4px;
-  background: white !important;
+  background: var(--bg-card) !important;
   border: 2px solid #0ea5e9 !important;
   border-radius: 12px !important;
   color: #0c4a6e !important;
@@ -724,7 +725,7 @@
   align-items: center;
   gap: 6px;
   padding: 10px 14px;
-  background: white;
+  background: var(--bg-card);
   border: 2px solid #0ea5e9;
   border-radius: 10px;
   color: #0c4a6e;

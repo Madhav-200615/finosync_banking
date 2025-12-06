@@ -10,7 +10,7 @@ const User = require('../src/models/User');
 const Account = require('../src/models/Account');
 
 // Connect to MongoDB
-mongoose.connect(process.env.MONGO_URI || 'mongodb://localhost:27017/fastbank')
+mongoose.connect(process.env.MONGO_URI || 'mongodb://localhost:27017/finosync')
   .then(() => console.log('MongoDB connected'))
   .catch(err => {
     console.error('MongoDB connection error:', err);
@@ -25,7 +25,7 @@ function generateAccountNumber() {
 // Function to generate a 4-digit PIN
 function generatePIN() {
 
-    
+
   return Math.floor(1000 + Math.random() * 9000).toString();
 }
 
@@ -45,7 +45,7 @@ async function createUserWithBalance() {
     };
 
     // Check if user already exists with same phone, aadhar, or pan
-    const existingUser = await User.findOne({ 
+    const existingUser = await User.findOne({
       $or: [
         { phone: userData.phone },
         { aadhar: userData.aadhar },
@@ -61,7 +61,7 @@ async function createUserWithBalance() {
 
     // Generate 6-digit account number
     const accountNumber = generateAccountNumber();
-    
+
     // Hash the 4-digit PIN
     const pinHash = await bcrypt.hash(userData.pin, 10);
 
@@ -101,19 +101,19 @@ async function createUserWithBalance() {
     console.log('\n🔐 Login Credentials:');
     console.log('  • Account Number:', accountNumber);
     console.log('  • 4-Digit PIN:', userData.pin);
-    
+
     console.log('\n👤 Personal Details:');
     console.log('  • Name:', userData.name);
     console.log('  • Age:', userData.age);
     console.log('  • Phone:', userData.phone);
     console.log('  • Address:', userData.address);
-    
+
     console.log('\n🏦 Account Details:');
     console.log('  • Account Type:', userData.accountType);
     console.log('  • Initial Balance: ₹' + userData.initialDeposit.toLocaleString('en-IN'));
     console.log('  • Aadhar: ' + userData.aadhar.replace(/(\d{4})(\d{4})(\d{4})/, '$1-XXXX-XXXX'));
     console.log('  • PAN: ' + userData.pan);
-    
+
     console.log('\n⚠️  IMPORTANT: Please save these credentials securely!');
     console.log('='.repeat(50));
 

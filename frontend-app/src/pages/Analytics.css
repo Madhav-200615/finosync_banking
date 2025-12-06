@@ -1,9 +1,10 @@
 /* Root container */
 .analytics-root {
   padding: 30px;
-  background: #f5f6fa;    /* LIGHT Background */
+  background: var(--bg-primary);
+  /* LIGHT Background */
   min-height: 100vh;
-  color: #1e293b;
+  color: var(--text-primary);
   font-family: Arial, sans-serif;
 }
 
@@ -17,7 +18,7 @@
 .analytics-title {
   font-size: 28px;
   font-weight: 700;
-  color: #1e293b;
+  color: var(--text-primary);
 }
 
 .analytics-month {
@@ -37,10 +38,10 @@
 }
 
 .card {
-  background: #ffffff;
+  background: var(--bg-card);
   padding: 20px;
   border-radius: 16px;
-  box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
 }
 
 .label {
@@ -59,8 +60,13 @@
   font-size: 13px;
 }
 
-.positive { color: #16a34a; }
-.negative { color: #dc2626; }
+.positive {
+  color: #16a34a;
+}
+
+.negative {
+  color: #dc2626;
+}
 
 /* Charts Section */
 .charts-grid {
@@ -70,17 +76,17 @@
 }
 
 .chart-card {
-  background: #ffffff;
+  background: var(--bg-card);
   padding: 20px;
   border-radius: 16px;
-  box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
 }
 
 .chart-title {
   font-size: 16px;
   font-weight: 600;
   margin-bottom: 14px;
-  color: #1e293b;
+  color: var(--text-primary);
 }
 
 .no-data {
@@ -113,11 +119,11 @@
 
 /* Table Card */
 .table-card {
-  background: #ffffff;
+  background: var(--bg-card);
   padding: 20px;
   border-radius: 16px;
   margin-top: 20px;
-  box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
 }
 
 .table-wrapper {
@@ -156,6 +162,7 @@
   background: #fee2e2;
   color: #dc2626;
 }
+
 .pay-btn {
   padding: 6px 14px;
   background: #2563eb;

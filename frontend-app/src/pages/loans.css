@@ -59,7 +59,7 @@
 }
 
 .loan-card {
-  background: #ffffff;
+  background: var(--bg-card);
   border-radius: 18px;
   padding: 18px 20px 20px;
   box-shadow: 0 10px 30px rgba(15, 23, 42, 0.08);
@@ -104,7 +104,7 @@
   color: #4b5563;
 }
 
-.loan-summary-row + .loan-summary-row {
+.loan-summary-row+.loan-summary-row {
   border-top: 1px dashed #e5e7eb;
 }
 

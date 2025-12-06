@@ -1,4 +1,5 @@
 import React from "react";
+import ThemeToggle from "./ThemeToggle";
 
 export default function Topbar({ title }) {
   return (
@@ -6,11 +7,9 @@ export default function Topbar({ title }) {
       <div className="topbar-left">
         <h1>{title}</h1>
       </div>
-      <div className="topbar-right">
-        <div className="user-pill">
-          <span className="user-avatar">U</span>
-          <span className="user-name">User</span>
-        </div>
+      <div className="topbar-right" style={{ display: 'flex', alignItems: 'center', gap: '16px' }}>
+        <ThemeToggle />
+
       </div>
     </header>
   );

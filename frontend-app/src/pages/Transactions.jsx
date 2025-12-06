@@ -113,8 +113,8 @@ export default function Transactions() {
               <td>{t.description || t.note}</td>
               <td>{t.category}</td>
               <td>{t.type}</td>
-              <td className={t.type === "CREDIT" ? "amount-positive" : "amount-negative"}>
-                {t.type === "DEBIT" ? "-" : "+"}₹{Number(t.amount).toFixed(2)}
+              <td className={t.type?.trim().toUpperCase() === "CREDIT" ? "amount-positive" : "amount-negative"}>
+                {t.type?.trim().toUpperCase() === "DEBIT" ? "-" : "+"}₹{Number(t.amount).toFixed(2)}
               </td>
             </tr>
           ))}

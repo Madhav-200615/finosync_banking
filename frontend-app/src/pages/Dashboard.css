@@ -1,0 +1,256 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+
+.dashboard-page-container {
+    --primary-purple: #6c5ce7;
+    --primary-purple-gradient: linear-gradient(135deg, #6c5ce7 0%, #a29bfe 100%);
+    --primary-red-gradient: linear-gradient(135deg, #ff7675 0%, #d63031 100%);
+    --primary-blue-gradient: linear-gradient(135deg, #0984e3 0%, #74b9ff 100%);
+    --primary-orange-gradient: linear-gradient(135deg, #fdcb6e 0%, #e17055 100%);
+    --card-shadow: 0 8px 20px rgba(0, 0, 0, 0.06);
+    --card-radius: 24px;
+    --bg-card: #ffffff;
+    --text-primary: #2d3436;
+    --text-secondary: #636e72;
+
+    font-family: 'Inter', sans-serif;
+    color: var(--text-primary);
+    /* height: calc(100vh - 100px); */
+    /* Removed fixed height */
+    /* overflow: hidden; */
+    /* Removed overflow hidden */
+    display: flex;
+    flex-direction: column;
+    padding-bottom: 20px;
+    /* Add some bottom padding */
+}
+
+.welcome-message {
+    font-size: 28px;
+    font-weight: 700;
+    margin-bottom: 24px;
+    color: var(--text-primary);
+    min-height: 40px;
+    /* Prevent layout shift */
+}
+
+[data-theme='dark'] .dashboard-page-container {
+    --bg-card: #2d3436;
+    --text-primary: #dfe6e9;
+    --text-secondary: #b2bec3;
+    --card-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+    background-color: var(--bg-primary);
+    /* Preserve original dark background for dashboard */
+    border-radius: 12px;
+    /* Optional: adds nice rounded corners if it's a container */
+    padding: 20px;
+    /* Ensure content isn't flush against the edge if we have a background */
+}
+
+.dashboard-page-container .dashboard-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+    flex-shrink: 0;
+    margin-bottom: 20px;
+}
+
+.dashboard-page-container .summary-card {
+    border-radius: var(--card-radius);
+    padding: 20px;
+    color: white;
+    position: relative;
+    overflow: hidden;
+    box-shadow: var(--card-shadow);
+    height: 120px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.dashboard-page-container .summary-card h3 {
+    font-size: 13px;
+    opacity: 0.9;
+    font-weight: 500;
+    z-index: 1;
+    margin: 0;
+}
+
+.dashboard-page-container .summary-card .amount {
+    font-size: 22px;
+    font-weight: 700;
+    z-index: 1;
+    margin: 0;
+}
+
+.dashboard-page-container .summary-card .trend {
+    font-size: 11px;
+    background: rgba(255, 255, 255, 0.2);
+    padding: 2px 8px;
+    border-radius: 10px;
+    align-self: flex-start;
+    z-index: 1;
+}
+
+.dashboard-page-container .summary-card.purple {
+    background: var(--primary-purple-gradient);
+}
+
+.dashboard-page-container .summary-card.red {
+    background: var(--primary-red-gradient);
+}
+
+.dashboard-page-container .summary-card.blue {
+    background: var(--primary-blue-gradient);
+}
+
+.dashboard-page-container .summary-card.orange {
+    background: var(--primary-orange-gradient);
+}
+
+/* Decorative circles */
+.dashboard-page-container .summary-card::before {
+    content: '';
+    position: absolute;
+    top: -20px;
+    right: -20px;
+    width: 100px;
+    height: 100px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 50%;
+}
+
+.dashboard-page-container .summary-card::after {
+    content: '';
+    position: absolute;
+    bottom: -30px;
+    left: -10px;
+    width: 80px;
+    height: 80px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 50%;
+}
+
+.dashboard-page-container .charts-grid {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 20px;
+    /* flex: 1; */
+    /* Allow natural height */
+    min-height: 300px;
+    /* Ensure minimum height */
+    margin-bottom: 20px;
+}
+
+.dashboard-page-container .chart-card {
+    background: var(--bg-card);
+    border-radius: var(--card-radius);
+    padding: 20px;
+    box-shadow: var(--card-shadow);
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    min-height: 300px;
+    /* Ensure cards have height */
+}
+
+.dashboard-page-container .chart-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.dashboard-page-container .chart-header h2 {
+    font-size: 16px;
+    font-weight: 600;
+    color: var(--text-primary);
+    margin: 0;
+}
+
+.dashboard-page-container .bottom-grid {
+    display: grid;
+    grid-template-columns: 1.5fr 1fr;
+    gap: 20px;
+    /* flex: 1; */
+    /* Allow natural height */
+    min-height: 300px;
+    /* Ensure minimum height */
+}
+
+.dashboard-page-container .activity-list {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    overflow-y: auto;
+    padding-right: 5px;
+}
+
+.dashboard-page-container .activity-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px;
+    border-radius: 12px;
+    background: rgba(0, 0, 0, 0.02);
+}
+
+.dashboard-page-container .activity-icon {
+    width: 36px;
+    height: 36px;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 16px;
+    margin-right: 12px;
+}
+
+.dashboard-page-container .activity-info {
+    flex: 1;
+}
+
+.dashboard-page-container .activity-title {
+    font-weight: 600;
+    font-size: 13px;
+    color: var(--text-primary);
+    margin-bottom: 2px;
+}
+
+.dashboard-page-container .activity-date {
+    font-size: 11px;
+    color: var(--text-secondary);
+}
+
+.dashboard-page-container .activity-amount {
+    font-weight: 700;
+    font-size: 14px;
+}
+
+.dashboard-page-container .spends-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.dashboard-page-container .spends-table td {
+    padding: 10px 0;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+    font-size: 13px;
+    color: var(--text-primary);
+}
+
+.dashboard-page-container .spends-table td:last-child {
+    text-align: right;
+    font-weight: 600;
+}
+
+.dashboard-page-container .category-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.dashboard-page-container .category-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+}

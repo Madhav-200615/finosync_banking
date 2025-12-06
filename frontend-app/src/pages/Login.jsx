@@ -4,6 +4,7 @@ import "../styles.css";        // global styles (already hai)
 import "./login.css";          // naya login specific CSS
 import api from "../api";
 import ForgotPinModal from "../components/ForgotPinModal";
+import ThemeToggle from "../components/ThemeToggle";
 
 export default function Login() {
   const [name, setName] = useState("");
@@ -124,9 +125,14 @@ export default function Login() {
 
   return (
     <div className="login-root">
+      {/* Theme Toggle - Top Right */}
+      <div style={{ position: 'fixed', top: '20px', right: '20px', zIndex: 1000 }}>
+        <ThemeToggle />
+      </div>
+
       {/* LEFT BRAND PANEL */}
       <div className="login-side">
-        <div className="logo-badge">FastBank</div>
+        <div className="logo-badge">FinoSync</div>
         <h1 className="login-heading">Welcome back, banker.</h1>
         <p className="login-tagline">
           Track accounts, FDs, loans & investments from one clean dashboard.
@@ -161,7 +167,7 @@ export default function Login() {
       >
         <div className="login-card-inner">
           <header className="login-header">
-            <h2>Sign in to FastBank</h2>
+            <h2>Sign in to FinoSync</h2>
             <p>Use your virtual account details to continue.</p>
           </header>
 

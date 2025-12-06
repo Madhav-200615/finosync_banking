@@ -12,7 +12,7 @@ function initWsServer(httpServer) {
     socket.send(
       JSON.stringify({
         type: "welcome",
-        message: "WS connected to FastBank",
+        message: "WS connected to FinoSync",
       })
     );
   });
