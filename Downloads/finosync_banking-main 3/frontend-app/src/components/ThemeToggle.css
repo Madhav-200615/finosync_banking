@@ -1,0 +1,77 @@
+.theme-toggle {
+    position: relative;
+    width: 40px;
+    height: 40px;
+    border: none;
+    border-radius: 12px;
+    background: var(--toggle-bg);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.theme-toggle:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    background: var(--toggle-bg-hover);
+}
+
+.theme-toggle:active {
+    transform: translateY(0);
+}
+
+.theme-icon {
+    width: 20px;
+    height: 20px;
+    color: var(--toggle-icon);
+    transition: all 0.3s ease;
+}
+
+.theme-icon.moon {
+    animation: moonRotate 0.5s ease;
+}
+
+.theme-icon.sun {
+    animation: sunRotate 0.5s ease;
+}
+
+@keyframes moonRotate {
+    from {
+        transform: rotate(-90deg) scale(0.5);
+        opacity: 0;
+    }
+
+    to {
+        transform: rotate(0deg) scale(1);
+        opacity: 1;
+    }
+}
+
+@keyframes sunRotate {
+    from {
+        transform: rotate(90deg) scale(0.5);
+        opacity: 0;
+    }
+
+    to {
+        transform: rotate(0deg) scale(1);
+        opacity: 1;
+    }
+}
+
+/* Light mode colors */
+:root[data-theme="light"] {
+    --toggle-bg: #f0f4f8;
+    --toggle-bg-hover: #e3e8ef;
+    --toggle-icon: #4b5563;
+}
+
+/* Dark mode colors */
+:root[data-theme="dark"] {
+    --toggle-bg: #2d3748;
+    --toggle-bg-hover: #3d4758;
+    --toggle-icon: #fbbf24;
+}

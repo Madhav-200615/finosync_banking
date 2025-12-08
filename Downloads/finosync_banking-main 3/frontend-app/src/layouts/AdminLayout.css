@@ -1,0 +1,43 @@
+/* Admin Layout Styles */
+
+.admin-layout {
+    display: flex;
+    min-height: 100vh;
+    background: #F3F4F6;
+}
+
+.admin-main {
+    flex: 1;
+    margin-left: 280px;
+    transition: margin-left 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.admin-main.sidebar-collapsed {
+    margin-left: 80px;
+}
+
+.admin-content {
+    margin-top: 70px;
+    padding: 30px;
+    min-height: calc(100vh - 70px);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .admin-main {
+        margin-left: 0;
+    }
+
+    .admin-content {
+        padding: 20px 15px;
+    }
+}
+
+/* Dark Mode */
+[data-theme="dark"] .admin-layout {
+    background: #111827;
+}
+
+[data-theme="dark"] .admin-content {
+    background: #111827;
+}

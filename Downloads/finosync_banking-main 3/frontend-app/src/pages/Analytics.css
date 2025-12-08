@@ -1,0 +1,189 @@
+/* Root container */
+.analytics-root {
+  padding: 30px;
+  background: var(--bg-primary);
+  /* LIGHT Background */
+  min-height: 100vh;
+  color: var(--text-primary);
+  font-family: Arial, sans-serif;
+}
+
+/* Header */
+.analytics-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.analytics-title {
+  font-size: 28px;
+  font-weight: 700;
+  color: var(--text-primary);
+}
+
+.analytics-month {
+  font-size: 14px;
+  padding: 8px 14px;
+  background: #eceff5;
+  color: #374151;
+  border-radius: 8px;
+}
+
+/* Summary Cards */
+.cards-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 18px;
+  margin: 25px 0;
+}
+
+.card {
+  background: var(--bg-card);
+  padding: 20px;
+  border-radius: 16px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+}
+
+/* Ensure first two summary cards are aligned flat (no rotation/offset) */
+.card-1,
+.card-2 {
+  transform: none !important;
+  top: auto !important;
+  left: auto !important;
+  right: auto !important;
+  bottom: auto !important;
+}
+
+.label {
+  font-size: 13px;
+  color: #6b7280;
+}
+
+.value {
+  font-size: 22px;
+  font-weight: 700;
+  margin: 6px 0;
+}
+
+.note {
+  color: #6b7280;
+  font-size: 13px;
+}
+
+.positive {
+  color: #16a34a;
+}
+
+.negative {
+  color: #dc2626;
+}
+
+/* Charts Section */
+.charts-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 18px;
+}
+
+.chart-card {
+  background: var(--bg-card);
+  padding: 20px;
+  border-radius: 16px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+}
+
+.chart-title {
+  font-size: 16px;
+  font-weight: 600;
+  margin-bottom: 14px;
+  color: var(--text-primary);
+}
+
+.no-data {
+  padding: 20px;
+  font-size: 14px;
+  color: #6b7280;
+}
+
+/* Pie Chart */
+.pie-wrapper {
+  display: flex;
+  gap: 18px;
+  align-items: center;
+}
+
+.legend-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  font-size: 14px;
+  margin: 6px 0;
+}
+
+.legend-dot {
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+}
+
+/* Table Card */
+.table-card {
+  background: var(--bg-card);
+  padding: 20px;
+  border-radius: 16px;
+  margin-top: 20px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+}
+
+.table-wrapper {
+  overflow-x: auto;
+}
+
+.txn-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.txn-table th,
+.txn-table td {
+  padding: 12px;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.txn-table th {
+  color: #6b7280;
+  font-weight: 600;
+}
+
+.pill {
+  padding: 4px 10px;
+  border-radius: 50px;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.credit {
+  background: #d1fae5;
+  color: #16a34a;
+}
+
+.debit {
+  background: #fee2e2;
+  color: #dc2626;
+}
+
+.pay-btn {
+  padding: 6px 14px;
+  background: #2563eb;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: 600;
+  transition: 0.2s;
+}
+
+.pay-btn:hover {
+  background: #1d4ed8;
+}

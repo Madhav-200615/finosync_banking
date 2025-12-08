@@ -1,0 +1,295 @@
+/* Admin Dashboard - Premium Fintech Design */
+
+.admin-dashboard {
+    padding-bottom: 40px;
+}
+
+/* Header */
+.admin-dashboard-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 30px;
+}
+
+.admin-dashboard-header h1 {
+    font-size: 2rem;
+    font-weight: 700;
+    color: #1F2937;
+    margin-bottom: 5px;
+}
+
+.admin-dashboard-header p {
+    color: #6B7280;
+    font-size: 0.95rem;
+}
+
+.admin-refresh-btn {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 12px 20px;
+    background: white;
+    border: 2px solid #E5E7EB;
+    border-radius: 10px;
+    color: #374151;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+.admin-refresh-btn:hover {
+    border-color: #2563EB;
+    color: #2563EB;
+    transform: translateY(-2px);
+}
+
+/* Stats Grid */
+.admin-stats-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 24px;
+    margin-bottom: 40px;
+}
+
+.admin-stat-card {
+    background: white;
+    border-radius: 16px;
+    padding: 24px;
+    display: flex;
+    gap: 20px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s;
+    border: 2px solid transparent;
+}
+
+.admin-stat-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    border-color: var(--card-color);
+}
+
+.admin-stat-icon {
+    width: 60px;
+    height: 60px;
+    border-radius: 14px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.8rem;
+    flex-shrink: 0;
+}
+
+.admin-stat-content {
+    flex: 1;
+}
+
+.admin-stat-title {
+    font-size: 0.9rem;
+    color: #6B7280;
+    margin-bottom: 8px;
+    font-weight: 500;
+}
+
+.admin-stat-value {
+    font-size: 2rem;
+    font-weight: 700;
+    color: #1F2937;
+    margin-bottom: 8px;
+}
+
+.admin-stat-change {
+    font-size: 0.85rem;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+}
+
+.admin-stat-change.positive {
+    color: #10B981;
+}
+
+.admin-stat-change.negative {
+    color: #EF4444;
+}
+
+.admin-stat-change.neutral {
+    color: #6B7280;
+}
+
+/* Quick Actions */
+.admin-quick-actions {
+    margin-bottom: 40px;
+}
+
+.admin-quick-actions h2 {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #1F2937;
+    margin-bottom: 20px;
+}
+
+.admin-action-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+}
+
+.admin-action-card {
+    background: white;
+    border: 2px solid #E5E7EB;
+    border-radius: 14px;
+    padding: 20px;
+    display: flex;
+    gap: 16px;
+    align-items: start;
+    cursor: pointer;
+    transition: all 0.3s;
+    text-align: left;
+}
+
+.admin-action-card:hover {
+    border-color: #2563EB;
+    transform: translateY(-4px);
+    box-shadow: 0 8px 20px rgba(37, 99, 235, 0.15);
+}
+
+.admin-action-icon {
+    width: 50px;
+    height: 50px;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+    flex-shrink: 0;
+}
+
+.admin-action-card h3 {
+    font-size: 1rem;
+    font-weight: 600;
+    color: #1F2937;
+    margin-bottom: 4px;
+}
+
+.admin-action-card p {
+    font-size: 0.85rem;
+    color: #6B7280;
+}
+
+/* Charts Section */
+.admin-charts-section {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+    gap: 24px;
+}
+
+.admin-chart-card {
+    background: white;
+    border-radius: 16px;
+    padding: 24px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.admin-chart-card h3 {
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: #1F2937;
+    margin-bottom: 20px;
+}
+
+.chart-placeholder {
+    height: 250px;
+    background: #F9FAFB;
+    border: 2px dashed #E5E7EB;
+    border-radius: 12px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    color: #9CA3AF;
+}
+
+.chart-placeholder p {
+    font-size: 1.1rem;
+    margin-bottom: 8px;
+}
+
+.chart-placeholder small {
+    font-size: 0.85rem;
+}
+
+/* Loading & Error States */
+.admin-dashboard-loading,
+.admin-dashboard-error {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 400px;
+    gap: 20px;
+}
+
+.spinner {
+    width: 50px;
+    height: 50px;
+    border: 4px solid #E5E7EB;
+    border-top-color: #2563EB;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+.admin-dashboard-error button {
+    padding: 12px 24px;
+    background: #2563EB;
+    color: white;
+    border: none;
+    border-radius: 10px;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+
+    .admin-stats-grid,
+    .admin-action-grid,
+    .admin-charts-section {
+        grid-template-columns: 1fr;
+    }
+
+    .admin-dashboard-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 15px;
+    }
+}
+
+/* Dark Mode */
+[data-theme="dark"] .admin-dashboard-header h1 {
+    color: #F3F4F6;
+}
+
+[data-theme="dark"] .admin-stat-card,
+[data-theme="dark"] .admin-action-card,
+[data-theme="dark"] .admin-chart-card {
+    background: #1F2937;
+    border-color: #374151;
+}
+
+[data-theme="dark"] .admin-stat-value,
+[data-theme="dark"] .admin-action-card h3 {
+    color: #F3F4F6;
+}
+
+[data-theme="dark"] .chart-placeholder {
+    background: #111827;
+    border-color: #374151;
+}
