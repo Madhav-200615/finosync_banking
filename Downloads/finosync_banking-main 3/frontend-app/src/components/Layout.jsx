@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import Topbar from "./Topbar";
+import UserTopbar from "./UserTopbar";
 
 export default function Layout({ title, children }) {
   return (
@@ -37,7 +37,7 @@ export default function Layout({ title, children }) {
 
       {/* MAIN CONTENT */}
       <main className="main">
-        <Topbar title={title} />
+        <UserTopbar title={title} />
         {children}
       </main>
 

@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
+import api from '../api';
 import ThemeToggle from './ThemeToggle';
 import './UserTopbar.css';
 
@@ -9,11 +10,32 @@ export default function UserTopbar({ title }) {
     const [showProfileMenu, setShowProfileMenu] = useState(false);
 
     useEffect(() => {
-        const token = localStorage.getItem('token');
-        const user = localStorage.getItem('user');
-        if (user) {
-            setUserData(JSON.parse(user));
-        }
+        const fetchUser = async () => {
+            try {
+                // Try to get from local storage first for immediate display
+                const storedUser = localStorage.getItem('user');
+                if (storedUser) {
+                    setUserData(JSON.parse(storedUser));
+                }
+
+                // Fetch fresh data from backend
+                const token = localStorage.getItem('token');
+                if (token) {
+                    try {
+                        const res = await api.get('/auth/me');
+                        if (res.data && res.data.user) {
+                            setUserData(res.data.user);
+                            localStorage.setItem('user', JSON.stringify(res.data.user));
+                        }
+                    } catch (err) {
+                        // Silent fail for profile fetch if generic error, keep local storage data
+                    }
+                }
+            } catch (e) {
+                console.error("Error loading user data", e);
+            }
+        };
+        fetchUser();
     }, []);
 
     const handleLogout = () => {
@@ -34,7 +56,7 @@ export default function UserTopbar({ title }) {
             </div>
             <div className="user-topbar-right">
                 <ThemeToggle />
-                
+
                 {/* User Profile */}
                 <div className="user-topbar-profile">
                     <button

@@ -13,6 +13,7 @@ import FD from "./pages/FD";
 import Investments from "./pages/Investments";
 import Analytics from "./pages/Analytics";
 import LoanApply from "./pages/LoanApply";
+import MyInfo from "./pages/MyInfo";
 
 import LandingPage from "./pages/LandingPage";
 import Transfer from "./pages/Transfer";
@@ -162,6 +163,15 @@ export default function App() {
           element={
             <PrivateRoute>
               <Analytics />
+            </PrivateRoute>
+          }
+        />
+
+        <Route
+          path="/my-info"
+          element={
+            <PrivateRoute>
+              <MyInfo />
             </PrivateRoute>
           }
         />

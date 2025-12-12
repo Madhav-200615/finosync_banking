@@ -48,6 +48,16 @@ export function connectWS(onMessage) {
   if (!socket || socket.readyState === WebSocket.CLOSED) {
     socket = createSocket();
   }
+
+  // Return cleanup function
+  return () => {
+    if (onMessage) {
+      const index = listeners.indexOf(onMessage);
+      if (index !== -1) {
+        listeners.splice(index, 1);
+      }
+    }
+  };
 }
 /* ============================================================
    PUBLIC API #2 — NEW initSocket(token, userId)

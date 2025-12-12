@@ -374,11 +374,52 @@ exports.getMe = async (req, res) => {
         name: user.name,
         email: user.email,
         phone: user.phone,
-        accountNumber: user.accountNumber
+        accountNumber: user.accountNumber,
+        age: user.age,
+        address: user.address,
+        aadhar: user.aadhar,
+        pan: user.pan
       }
     });
   } catch (err) {
     console.error("GetMe Error:", err);
     return res.status(500).json({ error: "Failed to fetch user" });
+  }
+};
+
+// CHANGE PIN
+exports.changePin = async (req, res) => {
+  try {
+    const { oldPin, newPin } = req.body;
+
+    if (!oldPin || !newPin) {
+      return res.status(400).json({ error: "Please provide both old and new PIN" });
+    }
+
+    if (!/^\d{4}$/.test(newPin)) {
+      return res.status(400).json({ error: "New PIN must be 4 digits" });
+    }
+
+    const user = await User.findById(req.user.id);
+    if (!user) return res.status(404).json({ error: "User not found" });
+
+    // Verify Old PIN
+    const isMatch = await bcrypt.compare(oldPin, user.pinHash);
+    if (!isMatch) {
+      return res.status(400).json({ error: "Incorrect old PIN" });
+    }
+
+    // Hash New PIN
+    const salt = await bcrypt.genSalt(10);
+    const pinHash = await bcrypt.hash(newPin, salt);
+
+    user.pinHash = pinHash;
+    await user.save();
+
+    return res.json({ success: true, message: "PIN changed successfully" });
+
+  } catch (err) {
+    console.error("Change PIN Error:", err);
+    return res.status(500).json({ error: "Failed to change PIN" });
   }
 };
